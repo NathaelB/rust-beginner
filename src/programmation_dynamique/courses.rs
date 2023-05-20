@@ -1,9 +1,9 @@
 use rand::Rng;
 
 pub struct Course {
-  start: usize,
-  end: usize,
-  value: usize,
+  pub start: usize,
+  pub end: usize,
+  pub value: usize,
 }
 
 pub struct Courses {
@@ -18,6 +18,10 @@ impl Course {
       end,
       value,
     }
+  }
+
+  pub fn print (&self) {
+    println!("start: {}, end: {}, value: {}", self.start, self.end, self.value);
   }
 }
 
@@ -41,7 +45,12 @@ impl Courses {
     }
   }
 
-  pub fn sort_courses (&mut self) {
+  pub fn push (&mut self, course: Course) -> &mut Self {
+    self.data.push(course);
+    self
+  }
+
+  pub fn sort_courses (&mut self) -> &mut Self {
     let mut n = self.data.len();
     let mut swapped = true;
 
@@ -55,6 +64,30 @@ impl Courses {
       }
       n -= 1;
     }
+
+    self
+  }
+
+  pub fn calcul_pred (&self) -> Vec<isize> {
+    let mut pred: Vec<isize> = vec![-1; self.data.len()];
+
+    for i in 0..self.data.len() {
+      let current_start = self.data[i].start;
+      let mut latest_end: isize = -1;
+
+      for j in 0..self.data.len() {
+        if j != i
+          && i != 0
+          && self.data[j].end < current_start
+          && self.data[j].end as isize > latest_end
+        {
+          latest_end = self.data[j].end as isize;
+          pred[i] = j as isize;
+        }
+      }
+    }
+
+    pred
   }
 
   pub fn print (&self) {
