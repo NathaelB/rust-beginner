@@ -2,7 +2,7 @@ mod matrix;
 mod programmation_dynamique;
 
 use crate::matrix::Matrix;
-use crate::programmation_dynamique::courses::Courses;
+use crate::programmation_dynamique::courses::{Course, Courses};
 
 #[allow(dead_code)]
 fn glouton (m: &Matrix) -> Option<u32> {
@@ -58,12 +58,20 @@ fn main() {
 
 
   let mut courses = Courses::new();
-  courses.random_courses(10);
-  courses.print();
+
+  courses
+    .push(Course::new(76, 78, 10))
+    .push(Course::new(12,17,2))
+    .push(Course::new(13,15,1))
+    .push(Course::new(19,28,8))
+    .push(Course::new(12,20,7))
+    .push(Course::new(44,45,9))
+    .push(Course::new(43,45,5))
+    .push(Course::new(1,8,3));
 
   courses.sort_courses();
 
-  println!("FILTRER PAR END");
-
   courses.print();
+  let pred = courses.calcul_pred();
+  println!("PRED: {:?}", pred);
 }
