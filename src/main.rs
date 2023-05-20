@@ -1,6 +1,8 @@
 mod matrix;
+mod programmation_dynamique;
 
 use crate::matrix::Matrix;
+use crate::programmation_dynamique::courses::Courses;
 
 #[allow(dead_code)]
 fn glouton (m: &Matrix) -> Option<u32> {
@@ -38,15 +40,6 @@ fn main() {
     vec![10, 1, 1],
   ];
   let mut matrix2 = Matrix::new(vec2);
-
-  matrix2.print();
-
-  println!();
-  matrix2.dyn_big_value().print();
-  println!();
-
-
-  println!("Nombre de pièce qu'on peut avoir au max: {}", matrix2.dyn_big_value().get_value(matrix2.get_size()-1, matrix2.get_size()-1));
   let path = matrix2.find_optimal_path();
 
   println!("Optimal Path:");
@@ -59,7 +52,18 @@ fn main() {
 
   println!("Total value: {}", val);
 
+  println!("-----------------------------------");
+  println!("TP 3 PROGRAMMATION DYNAMIQUE COURSES");
+  println!("-----------------------------------");
 
 
+  let mut courses = Courses::new();
+  courses.random_courses(10);
+  courses.print();
 
+  courses.sort_courses();
+
+  println!("FILTRER PAR END");
+
+  courses.print();
 }

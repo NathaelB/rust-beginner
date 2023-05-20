@@ -6,7 +6,7 @@ pub struct Matrix {
   data: Vec<Vec<u32>>
 }
 
-
+#[allow(dead_code)]
 impl Matrix {
   pub fn new (data: Vec<Vec<u32>>) -> Self {
     Matrix {
