@@ -3,6 +3,7 @@ mod programmation_dynamique;
 
 use crate::matrix::Matrix;
 use crate::programmation_dynamique::courses::{Course, Courses};
+use crate::programmation_dynamique::seccotine::Seccotine;
 
 #[allow(dead_code)]
 fn glouton (m: &Matrix) -> Option<u32> {
@@ -40,7 +41,9 @@ fn main() {
     vec![10, 1, 1],
   ];
   let mut matrix2 = Matrix::new(vec2);
-  let path = matrix2.find_optimal_path();
+
+  let mut seccotine = Seccotine::new(matrix2.clone());
+  let path = seccotine.find_optimal_path();
 
   println!("Optimal Path:");
   let mut val = 0;

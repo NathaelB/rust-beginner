@@ -1,4 +1,5 @@
 pub(crate) mod courses;
+pub mod seccotine;
 
 #[cfg(test)]
 mod tests {
