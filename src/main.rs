@@ -45,6 +45,8 @@ fn main() {
   let mut seccotine = Seccotine::new(matrix2.clone());
   let path = seccotine.find_optimal_path();
 
+  println!("Len de path: {}", path.len());
+
   println!("Optimal Path:");
   let mut val = 0;
   for (x, y) in path {
